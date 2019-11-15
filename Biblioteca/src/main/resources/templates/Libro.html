@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"></meta>
+<title>Libro</title>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css"></link>
+
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" th:src="@{/js/libro.js}"></script>
+
+
+
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	<div class="container">
+		<form th:action="@{/libro/registrar}" method="post" th:object="${libro}">
+			<div class="form-group">
+				<label for="idLibro">ID:</label> <input type="text"
+					class="form-control" th:field="*{idLibro}"></input>
+
+				<div class="form-group">
+					<label for="nombreLibro">NOMBRE:</label> <input type="text"
+						th:field="*{nombreLibro}" class="form-control" id="nombreLibro"></input>
+					<div class="alert alert-danger"
+						th:if="${#fields.hasErrors('nombreLibro')}" th:errors="*{nombreLibro}"></div>
+			    </div>
+			    <label for="fechaIngreso">FECHA DE INGRESO:</label> <input
+						type="date" th:field="*{fechaIngresoLibro}" class="form-control"
+						id="fechaIngreso"></input>
+						<!-- th:errors Se encarga del manejo de errores -->
+					<div class="alert alert-danger"
+						th:if="${#fields.hasErrors('fechaIngresoLibro')}"
+						th:errors="*{fechaIngresoLibro}"></div>
+				<div class="form-group">
+					<label for="numEdi">NUMERO DE EDICIÓN:</label> <input type="text"
+						th:field="*{numEdicionLibro}" class="form-control" id="numEdi"></input>
+					<div class="alert alert-danger"
+						th:if="${#fields.hasErrors('numEdicionLibro')}" th:errors="*{numEdicionLibro}"></div>
+			    </div>
+				<div class="form-group">
+					<label for="numSer">NUMERO DE SERIE:</label> <input type="text"
+						th:field="*{numSerieLibro}" class="form-control" id="numSer"></input>
+					<div class="alert alert-danger"
+						th:if="${#fields.hasErrors('numSerieLibro')}" th:errors="*{numSerieLibro}"></div>
+			    </div>		
+				<div class="form-group">
+					<label for="idiomaLibro">IDIOMA:</label> <input type="text"
+						th:field="*{idiomaLibro}" class="form-control" id="idiomaLibro"></input>
+					<div class="alert alert-danger"
+						th:if="${#fields.hasErrors('idiomaLibro')}" th:errors="*{idiomaLibro}"></div>
+			    </div>		
+			    <div class="form-group">
+					<label for="estadoLibro">ESTADO:</label> <input type="text"
+						th:field="*{estadoLibro}" class="form-control" id="estadoLibro"></input>
+					<div class="alert alert-danger"
+						th:if="${#fields.hasErrors('estadoLibro')}" th:errors="*{estadoLibro}"></div>
+			    </div>
+			    <div class="form-group">
+					<label for="isbnLibro">CODÍGO ISBN:</label> <input type="text"
+						th:field="*{isbnLibro}" class="form-control" id="isbnLibro"></input>
+					<div class="alert alert-danger"
+						th:if="${#fields.hasErrors('isbnLibro')}" th:errors="*{isbnLibro}"></div>
+			    </div>
+			</div>
+			<button type="submit" class="btn btn-primary">Aceptar</button>
+			<a href="/libro/listar" class="btn btn-danger">Cancelar</a>
+
+		</form>
+	</div>
+	<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

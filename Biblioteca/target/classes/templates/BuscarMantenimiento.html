@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"></meta>
+<title>Buscar Mantenimiento</title>
+<script type="text/javascript"
+	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css"></link>
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	<div class="container">
+		<form th:action="@{/mantenimiento/buscar}" method="post" th:object="${mantenimiento}">
+
+
+			<div class="form-group">
+				<label for="libro">Buscar Libro:</label> <input type="text"
+					class="form-control" th:field="*{libro}" id="libro"></input>
+					
+			</div>
+			
+			<button type="submit" class="btn btn-primary">Aceptar</button>
+			<a href="/mantenimiento/listar" class="btn btn-danger">Cancelar</a>
+
+		</form>
+
+		<table class="table table-bordered table-hover table-striped"
+			id="tab_logic">
+			<thead>
+				<tr>
+					<th class="text-center">CODIGO</th>
+					<th class="text-center">LIBRO</th>
+					<th class="text-center">OBSERVACION</th>
+					<th class="text-center">FECHA DE MANTENIMIENTO</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="man: ${listaMantenimientos}">
+					<td th:text="${man.idMantenimiento}"></td>
+					<td th:text="${man.libro}"></td>
+					<td th:text="${man.obserMante}"></td>
+					<td th:text="${man.fechaMante}"></td>
+				</tr>
+			</tbody>
+		</table>
+
+
+		<div th:if="${mensaje}" class="alert alert-info">
+			<p th:text="${mensaje}"></p>
+		</div>
+	</div>
+	<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>
