@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"></meta>
+<title>Prestamos</title>
+<script type="text/javascript"
+	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css"></link>
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+
+	<div class="container">
+		<form id="myform">
+			<div class="row clearfix">
+				<div class="col-md-12 column">
+					<a style="border-bottom-color: green" th:href="@{/prestamo/irRegistrar}"
+						id="add-row" type="button"
+						class="btn btn-primary btn-md left-block"> <span
+						class="glyphicon glyphicon-plus"></span> Prestamo
+					</a>
+					<a style="border-bottom-color: green" th:href="@{/prestamo/irBuscar}"
+						id="add-row" type="button"
+						class="btn btn-primary btn-md left-block"> <span
+						class="glyphicon glyphicon-search"></span> 
+					</a>
+					
+					<table class="table table-bordered table-hover table-striped"
+						id="tab_logic">
+						<thead>
+							<tr>
+								<th class="text-center">CODIGO</th>
+								<th class="text-center">FECHA</th>
+								<th class="text-center">CANTIDAD</th>
+								<th class="text-center">USUARIO</th>
+								<th class="text-center">EJEMPLAR</th>
+								<th class="text-center">FECHA DE ENTREGA</th>
+								<th class="text-center">FECHA DE DEVOLUCIÓN</th>
+								<th class="text-center">OBSERVACIÓN</th>
+								<th class="text-center">OPERACIÓN</th>
+								<th class="text-center">OPERACIÓN</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="p: ${listaPrestamos}">
+							<!-- th:text muestra una linea de texto -->
+								<td th:text="${p.idPrestamo}"></td>
+								<td th:text="${#dates.format(p.fecha,'dd/MM/yyyy')}"></td>
+								<td th:text="${p.cantidad}"></td>
+								<td th:text="${p.usuario.nameUsuario}"></td>
+								<td th:text="${p.ejemplar.libro.nombreLibro}"></td>
+								<td th:text="${#dates.format(p.fechaEntrega,'dd/MM/yyyy')}"></td>
+								<td th:text="${#dates.format(p.fechaDevolucion,'dd/MM/yyyy')}"></td>
+								<td th:text="${p.observaciones}"></td>
+								
+								<!-- th:href Redirecciona -->
+								<td><a th:href="@{/prestamo/eliminar?id=}+${p.idPrestamo}">Eliminar</a></td>
+								<td><a th:href="@{'/prestamo/modificar/' + ${p.idPrestamo}}">Modificar</a></td>
+
+
+							</tr>
+						</tbody>
+
+					</table>
+
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

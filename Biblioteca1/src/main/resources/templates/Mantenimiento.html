@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"></meta>
+<title>Mantenimiento</title>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css"></link>
+
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" th:src="@{/js/mantenimiento.js}"></script>
+
+
+
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	<div class="container">
+		<form th:action="@{/mantenimiento/registrar}" method="post" th:object="${mantenimiento}">
+			<div class="form-group">
+				<label for="idMantenimiento">ID:</label> <input type="text"
+					class="form-control" th:field="*{idMantenimiento}"></input>
+
+						
+						 <label for="fechaMante">FECHA DE MANTENIMIENTO:</label> <input
+						type="date" th:field="*{fechaMante}" class="form-control"
+						id="fechaMante"></input>
+						<!-- th:errors Se encarga del manejo de errores -->
+					<div class="alert alert-danger"
+						th:if="${#fields.hasErrors('fechaMante')}"
+						th:errors="*{fechaMante}"></div>
+				
+				<div class="form-group">
+					<label for="obserMante">OBSERVACIONES:</label> <input type="text"
+						th:field="*{obserMante}" class="form-control" id="obserMante"></input>
+					<div class="alert alert-danger"
+						th:if="${#fields.hasErrors('obserMante')}" th:errors="*{obserMante}"></div>
+				</div>
+				
+				<label for="libro" class=" col-sm-2 col-form-label">Libro: </label> <select
+						class="form-control" th:field="*{libro.idLibro}">
+						<option th:each="l: ${listaLibros}" th:value="${l.idLibro}"
+							th:text="${l.nombreLibro}"
+							th:selected="(${l.idLibro} == *{libro.idLibro})"></option>
+					</select>
+				
+		
+			</div>
+			<button type="submit" class="btn btn-primary">Aceptar</button>
+			<a href="/mantenimiento/listar" class="btn btn-danger">Cancelar</a>
+
+		</form>
+	</div>
+	<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

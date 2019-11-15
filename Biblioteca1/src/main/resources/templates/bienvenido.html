@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"></meta>
+<title>BIenvenido</title>
+<script type="text/javascript"
+	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css"></link>
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="container">
+      <div class="container">
+        <h1>Bienvenidos a Elementals!</h1>
+        <p2>En esta página podrás encontra toda variedad de libros que necesitas !</p2>
+  		<br/>
+  		<div class="row">
+        <div class="col-md-4">
+        <img th:src="@{/imagenes/imgg.jpg}" width="1000" height="600" alt="logo" align="middle"></img>
+       </div>
+       
+       </div>
+       <br/>
+       <br/>
+        <p><a class="btn btn-primary btn-lg" th:href="@{/prestamo/listar}" role="button">Comienza aqui! &raquo;</a></p>          
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4">
+          <h2>Libros</h2>
+          <p>Contamos con libros de todos los idiomas.</p>
+          <p> 
+          <img class="masthead-avatar mb-5" th:src="@{/imagenes/libros.jpg}" alt="" width="300" height="300" ></p>
+          <p><a class="btn btn-default" th:href="@{/libro/listar}" role="button">Ver Libros Disponibles &raquo;</a></p>
+        </div>
+        
+        
+        
+          <h2>Comienza a registrarte</h2>
+          <p>Registrate y se parte de esta familia </p>
+	<img class="masthead-avatar mb-5" th:src="@{/imagenes/img.jpg}" alt="" width="400" height="300" >         
+          <p>
+          
+          <br/>
+           <br/>
+          <a class="btn btn-default" th:href="@{/usuario/irRegistrar}" role="button">Registrate aqui! &raquo;</a></p>
+          
+        </div>
+      </div>
+
+      <hr>
+
+     
+    </div> <!-- /container -->
+
+	<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

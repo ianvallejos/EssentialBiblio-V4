@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"></meta>
+<title>Autor</title>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css"></link>
+
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" th:src="@{/js/autor.js}"></script>
+
+
+
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	<div class="container">
+		<form th:action="@{/autor/registrar}" method="post" th:object="${autor}">
+			<div class="form-group">
+				<label for="idAutor">ID:</label> <input type="text"
+					class="form-control" th:field="*{idAutor}"></input>
+
+				<div class="form-group">
+					<label for="nombreAutor">NOMBRE:</label> <input type="text"
+						th:field="*{nombreAutor}" class="form-control" id="nombreAutor"></input>
+					<div class="alert alert-danger"
+						th:if="${#fields.hasErrors('nombreAutor')}" th:errors="*{nombreAutor}"></div>
+				</div>
+				<div class="form-group">
+					<label for="apellidoAutor">APELLIDO:</label> <input type="text"
+						th:field="*{apellidoAutor}" class="form-control" id="apellidoAutor"></input>
+					<div class="alert alert-danger"
+						th:if="${#fields.hasErrors('apellidoAutor')}" th:errors="*{apellidoAutor}"></div>
+				</div>
+			</div>
+			<button type="submit" class="btn btn-primary">Aceptar</button>
+			<a href="/autor/listar" class="btn btn-danger">Cancelar</a>
+
+		</form>
+	</div>
+	<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>
