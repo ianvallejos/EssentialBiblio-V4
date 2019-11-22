@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"></meta>
+<title>Ejemplar</title>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css"></link>
+
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" th:src="@{/js/ejemplar.js}"></script>
+
+
+
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	<div class="container">
+		<form th:action="@{/ejemplar/registrar}" method="post" th:object="${ejemplar}">
+			<div class="form-group">
+				<label for="idEjemplar">ID:</label> <input type="text"
+					class="form-control" th:field="*{idEjemplar}"></input>
+
+						
+				
+					<div class="form-group">
+					<label for="numEjm">CANTIDAD DE EJEMPLAR:</label> <input type="text"
+						th:field="*{cantidadEjemplar}" class="form-control" id="numEjm"></input>
+					<div class="alert alert-danger"
+						th:if="${#fields.hasErrors('cantidadEjemplar')}" th:errors="*{cantidadEjemplar}"></div>
+			    </div>	
+				
+				<label for="libro" class=" col-sm-2 col-form-label">Libro: </label> <select
+						class="form-control" th:field="*{libro.idLibro}">
+						<option th:each="l: ${listaLibros}" th:value="${l.idLibro}"
+							th:text="${l.nombreLibro}"
+							th:selected="(${l.idLibro} == *{libro.idLibro})"></option>
+					</select>
+				
+		
+			</div>
+			<button type="submit" class="btn btn-primary">Aceptar</button>
+			<a href="/ejemplar/listar" class="btn btn-danger">Cancelar</a>
+
+		</form>
+	</div>
+	<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>
